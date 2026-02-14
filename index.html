@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
-    <title>Para mamá, con todo mi corazón ❤️</title>
+    <title>Para mi mamá ❤️</title>
     
-    <!-- Fuentes elegantes -->
+    <!-- Fuentes elegantes y optimizadas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -27,24 +28,28 @@
             justify-content: center;
             align-items: center;
             font-family: 'Quicksand', sans-serif;
+            position: fixed;
+            touch-action: pan-y pinch-zoom;
         }
 
-        /* Partículas de fondo (corazones y estrellas suaves) */
+        /* Partículas de fondo optimizadas para móvil */
         #particles-container {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: 1;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .particle {
             position: absolute;
-            background: rgba(255, 120, 160, 0.25);
+            background: rgba(255, 120, 160, 0.2);
             border-radius: 50%;
-            filter: blur(20px);
+            filter: blur(15px);
             bottom: -200px;
             animation: move-particles linear infinite;
+            will-change: transform;
         }
 
         @keyframes move-particles {
@@ -61,163 +66,185 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            padding-top: 6vh;
-            padding-bottom: 3vh;
+            padding-top: 4vh;
+            padding-bottom: 2vh;
             z-index: 10;
             pointer-events: none;
         }
 
-        /* Texto principal con más frases y corazones */
+        /* Texto principal */
         .text-main {
             position: relative;
             color: #b3405a;
-            font-size: clamp(2.8rem, 12vw, 5.5rem);
+            font-size: clamp(2.2rem, 8vw, 4rem);
             font-family: 'Great Vibes', cursive;
-            text-shadow: 0 0 20px #ff99bb, 0 0 40px #ffb6c1;
-            animation: fadeInText 2s ease-in 2s forwards, floatText 5s ease-in-out infinite 3s;
+            text-shadow: 0 0 15px #ff99bb, 0 0 30px #ffb6c1;
+            animation: fadeInText 2s ease-in 1.5s forwards, floatText 5s ease-in-out infinite 3s;
             opacity: 0;
             z-index: 20;
             text-align: center;
             line-height: 1.2;
-            pointer-events: none;
-            white-space: nowrap;
+            padding: 0 15px;
+            white-space: normal;
+            word-break: break-word;
+            max-width: 95vw;
         }
 
         .text-sub {
             font-family: 'Quicksand', sans-serif;
-            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-size: clamp(1rem, 4vw, 1.6rem);
             color: #982d4b;
-            background: rgba(255, 240, 245, 0.5);
+            background: rgba(255, 240, 245, 0.6);
             backdrop-filter: blur(4px);
-            padding: 12px 28px;
-            border-radius: 60px;
-            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: 10px 15px;
             font-weight: 400;
-            letter-spacing: 1px;
-            border: 1px solid rgba(255, 182, 193, 0.6);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
-            animation: fadeInText 2s ease-in 3s forwards, glowSub 3s ease-in-out infinite 4s;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 182, 193, 0.7);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+            animation: fadeInText 2s ease-in 2.5s forwards, glowSub 3s ease-in-out infinite 4s;
             opacity: 0;
             max-width: 90vw;
-            white-space: nowrap;
+            white-space: normal;
+            text-align: center;
+            z-index: 20;
         }
 
         @keyframes fadeInText { to { opacity: 1; } }
         @keyframes floatText {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-8px); }
         }
         @keyframes glowSub {
-            0%, 100% { box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3); border-color: #ffb6c1; }
-            50% { box-shadow: 0 15px 35px rgba(255, 20, 147, 0.5); border-color: #ff69b4; }
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); border-color: #ffb6c1; }
+            50% { box-shadow: 0 10px 25px rgba(255, 20, 147, 0.5); border-color: #ff69b4; }
         }
 
-        /* Contenedor de la rosa y elementos alrededor */
+        /* Contenedor de la rosa */
         .rose-wrapper {
             position: relative;
-            width: 320px;
-            height: 500px;
+            width: min(280px, 70vw);
+            height: min(440px, 70vh);
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            margin: 20px 0;
+            margin: 5px 0;
             z-index: 15;
             pointer-events: none;
         }
 
-        /* Rosa principal (estilo mejorado) */
+        /* Rosa principal */
         .rose {
             position: relative;
             width: 100%;
             height: 100%;
-            animation: grow 3.5s cubic-bezier(0.34, 1.3, 0.55, 1) forwards, 
+            animation: grow 3s cubic-bezier(0.34, 1.3, 0.55, 1) forwards, 
                        swayWholeRose 10s ease-in-out infinite 4s;
             transform-origin: bottom center;
             clip-path: inset(100% 0 0 0);
-            filter: drop-shadow(0 10px 15px rgba(180, 40, 80, 0.3));
+            filter: drop-shadow(0 8px 12px rgba(180, 40, 80, 0.25));
         }
 
         .petals {
             position: relative;
             width: 100%;
-            height: 230px;
+            height: 210px;
             animation: gentleSway 7s ease-in-out infinite 4.2s;
             transform-origin: bottom center;
             z-index: 10;
         }
 
-        /* Pétalos con colores degradados */
+        /* Pétalos con tamaños adaptables */
         .petals > div {
             position: absolute;
             background: radial-gradient(circle at 30% 30%, #ff7a9e, #d52d58);
-            width: 70px;
-            height: 90px;
+            width: min(65px, 15vw);
+            height: min(85px, 20vw);
             transition: all 0.4s ease-out;
-            box-shadow: 0 5px 15px rgba(200, 50, 80, 0.4);
+            box-shadow: 0 3px 10px rgba(200, 50, 80, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .petals > div:nth-child(1) { /* centro */
+        .petals > div:nth-child(1) {
             border-radius: 40% 40% 30% 30%;
-            left: calc(50% - 35px);
-            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 25px;
             background: radial-gradient(circle at 30% 30%, #ff99b4, #c41e45);
             z-index: 8;
             animation: bloom-center 2.2s ease-out 1.5s forwards, glowing 3s infinite 2s;
-            width: 70px; height: 85px;
+            width: min(65px, 15vw); 
+            height: min(80px, 19vw);
         }
         .petals > div:nth-child(2), .petals > div:nth-child(4) {
             background: radial-gradient(circle at 20% 40%, #ff809d, #b81b43);
-            left: calc(50% - 58px);
+            left: 50%;
+            transform: translateX(-100%);
             border-radius: 0 50px 0 40px;
             transform-origin: bottom right;
         }
         .petals > div:nth-child(3), .petals > div:nth-child(5) {
             background: radial-gradient(circle at 80% 40%, #ff809d, #b81b43);
-            left: calc(50% - 12px);
+            left: 50%;
             border-radius: 50px 0 40px 0;
             transform-origin: bottom left;
         }
-        .petals > div:nth-child(2) { top: 45px; height: 100px; z-index: 7; animation: bloom2 3s ease-in-out 1.8s forwards, glowing 3s infinite 2.3s; }
-        .petals > div:nth-child(3) { top: 45px; height: 100px; z-index: 7; animation: bloom3 3s ease-in-out 1.8s forwards, glowing 3s infinite 2.3s; }
-        .petals > div:nth-child(4) { top: 45px; height: 105px; z-index: 6; animation: bloom4 3s ease-in-out 2.0s forwards, glowing 3s infinite 2.5s; }
-        .petals > div:nth-child(5) { top: 45px; height: 105px; z-index: 6; animation: bloom5 3s ease-in-out 2.0s forwards, glowing 3s infinite 2.5s; }
+        .petals > div:nth-child(2) { top: 40px; height: min(95px, 22vw); z-index: 7; animation: bloom2 3s ease-in-out 1.8s forwards, glowing 3s infinite 2.3s; }
+        .petals > div:nth-child(3) { top: 40px; height: min(95px, 22vw); z-index: 7; animation: bloom3 3s ease-in-out 1.8s forwards, glowing 3s infinite 2.3s; }
+        .petals > div:nth-child(4) { top: 40px; height: min(100px, 23vw); z-index: 6; animation: bloom4 3s ease-in-out 2.0s forwards, glowing 3s infinite 2.5s; }
+        .petals > div:nth-child(5) { top: 40px; height: min(100px, 23vw); z-index: 6; animation: bloom5 3s ease-in-out 2.0s forwards, glowing 3s infinite 2.5s; }
         .petals > div:nth-child(6) {
-            top: 35px; height: 100px; z-index: 5; background: radial-gradient(circle at 20% 40%, #ff6088, #b81b43);
-            left: calc(50% - 45px); border-radius: 0 40px 0 40px; transform-origin: bottom right;
+            top: 30px; height: min(95px, 22vw); z-index: 5; 
+            background: radial-gradient(circle at 20% 40%, #ff6088, #b81b43);
+            left: 50%;
+            transform: translateX(-70%);
+            border-radius: 0 40px 0 40px; 
+            transform-origin: bottom right;
             animation: bloom6 3s ease-in-out 2.2s forwards, glowing 3s infinite 2.7s;
         }
         .petals > div:nth-child(7) {
-            top: 35px; height: 100px; z-index: 5; background: radial-gradient(circle at 80% 40%, #ff6088, #b81b43);
-            left: calc(50% - 25px); border-radius: 40px 0 40px 0; transform-origin: bottom left;
+            top: 30px; height: min(95px, 22vw); z-index: 5; 
+            background: radial-gradient(circle at 80% 40%, #ff6088, #b81b43);
+            left: 50%;
+            transform: translateX(-30%);
+            border-radius: 40px 0 40px 0; 
+            transform-origin: bottom left;
             animation: bloom7 3s ease-in-out 2.2s forwards, glowing 3s infinite 2.7s;
         }
-        /* Pétalo extra más abierto */
         .petals > div:nth-child(8) {
-            width: 80px; height: 75px; background: radial-gradient(circle at 30% 20%, #ffa5bc, #c41e45);
-            top: 60px; left: calc(50% - 40px); border-radius: 50% 50% 20% 20%; z-index: 4;
+            width: min(75px, 17vw); 
+            height: min(70px, 16vw); 
+            background: radial-gradient(circle at 30% 20%, #ffa5bc, #c41e45);
+            top: 55px; 
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50% 50% 20% 20%; 
+            z-index: 4;
             animation: bloom8 2.5s ease-out 2.5s forwards, glowing 3s infinite 3s;
             opacity: 0;
         }
 
         .calyx {
             position: absolute;
-            top: 118px;
-            left: calc(50% - 5px);
+            top: 108px;
+            left: 50%;
             transform: translateX(-50%);
             z-index: 20;
         }
         .calyx > div {
-            position: absolute; width: 28px; height: 60px;
+            position: absolute; 
+            width: min(24px, 6vw); 
+            height: min(50px, 12vw);
             background: linear-gradient(to top, #056b05, #32a832);
             transform-origin: bottom center;
             clip-path: polygon(50% 0%, 100% 70%, 75% 100%, 25% 100%, 0% 70%);
-            box-shadow: 0 0 8px rgba(0,80,0,0.5);
+            box-shadow: 0 0 5px rgba(0,80,0,0.4);
         }
-        .calyx > div:nth-child(1) { transform: rotate(-65deg); left: -25px; top: -5px; }
-        .calyx > div:nth-child(2) { transform: rotate(-22deg); left: -14px; }
+        .calyx > div:nth-child(1) { transform: rotate(-65deg); left: -20px; top: -5px; }
+        .calyx > div:nth-child(2) { transform: rotate(-22deg); left: -10px; }
         .calyx > div:nth-child(3) { transform: rotate(20deg); left: 2px; }
-        .calyx > div:nth-child(4) { transform: rotate(60deg); left: 14px; top: -5px; }
+        .calyx > div:nth-child(4) { transform: rotate(60deg); left: 12px; top: -5px; }
 
         .stem-bundle {
             position: absolute;
@@ -227,72 +254,87 @@
         }
         .stem {
             position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 12px; height: calc(100% - 135px); background: #056b05;
-            border-radius: 0 0 40px 40px; box-shadow: inset -2px -2px 5px #054c05;
+            width: min(10px, 2.5vw); 
+            height: calc(100% - 120px); 
+            background: #056b05;
+            border-radius: 0 0 40px 40px; 
+            box-shadow: inset -2px -2px 5px #054c05;
         }
         .leaves > div:nth-child(1) {
-            position: absolute; width: 48px; height: 80px; border-radius: 5px 45px 20px 45px;
-            background: #0a7a0a; transform: rotate(-35deg); top: 280px; left: calc(51% - 48px);
+            position: absolute; 
+            width: min(40px, 10vw); 
+            height: min(70px, 16vw); 
+            border-radius: 5px 45px 20px 45px;
+            background: #0a7a0a; 
+            transform: rotate(-35deg); 
+            top: 240px; 
+            left: 48%;
             box-shadow: inset 5px 5px #1b8a1b;
         }
         .leaves > div:nth-child(2) {
-            position: absolute; width: 48px; height: 80px; border-radius: 45px 0 45px 20px;
-            background: #0a7a0a; transform: rotate(35deg); top: 230px; left: 48%;
+            position: absolute; 
+            width: min(40px, 10vw); 
+            height: min(70px, 16vw); 
+            border-radius: 45px 0 45px 20px;
+            background: #0a7a0a; 
+            transform: rotate(35deg); 
+            top: 200px; 
+            left: 48%;
             box-shadow: inset -5px 5px #1b8a1b;
         }
         .thorns > div {
             position: absolute; width: 0; height: 0;
         }
-        .thorns > div:nth-child(odd) { border: 6px solid transparent; border-left: 6px solid #0a7a0a; left: calc(50% + 6px); }
-        .thorns > div:nth-child(even) { border: 6px solid transparent; border-right: 6px solid #0a7a0a; left: calc(50% - 18px); }
-        .thorns > div:nth-child(1) { top: 310px; }
-        .thorns > div:nth-child(2) { top: 260px; }
-        .thorns > div:nth-child(3) { top: 210px; }
+        .thorns > div:nth-child(odd) { border: 5px solid transparent; border-left: 5px solid #0a7a0a; left: calc(50% + 5px); }
+        .thorns > div:nth-child(even) { border: 5px solid transparent; border-right: 5px solid #0a7a0a; left: calc(50% - 15px); }
+        .thorns > div:nth-child(1) { top: 270px; }
+        .thorns > div:nth-child(2) { top: 230px; }
+        .thorns > div:nth-child(3) { top: 190px; }
 
-        /* Animaciones de apertura */
-        @keyframes bloom-center { 0% { transform: scale(0.4); } 100% { transform: scale(1); } }
-        @keyframes bloom2 { 100% { transform: rotate(-28deg) translateX(-5px); } }
-        @keyframes bloom3 { 100% { transform: rotate(28deg) translateX(5px); } }
-        @keyframes bloom4 { 100% { transform: rotate(-18deg) translateX(-8px); } }
-        @keyframes bloom5 { 100% { transform: rotate(18deg) translateX(8px); } }
-        @keyframes bloom6 { 100% { transform: rotate(-10deg) translateX(-5px); } }
-        @keyframes bloom7 { 100% { transform: rotate(10deg) translateX(5px); } }
-        @keyframes bloom8 { 0% { opacity: 0; transform: scale(0.7); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
-        @keyframes glowing { 50% { filter: brightness(1.2); box-shadow: 0 0 25px #ff99bb; } }
-        @keyframes gentleSway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(3deg); } }
-        @keyframes swayWholeRose { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
+        /* Animaciones */
+        @keyframes bloom-center { 0% { transform: translateX(-50%) scale(0.4); } 100% { transform: translateX(-50%) scale(1); } }
+        @keyframes bloom2 { 100% { transform: translateX(-100%) rotate(-25deg); } }
+        @keyframes bloom3 { 100% { transform: translateX(0) rotate(25deg); } }
+        @keyframes bloom4 { 100% { transform: translateX(-100%) rotate(-15deg); } }
+        @keyframes bloom5 { 100% { transform: translateX(0) rotate(15deg); } }
+        @keyframes bloom6 { 100% { transform: translateX(-70%) rotate(-10deg); } }
+        @keyframes bloom7 { 100% { transform: translateX(-30%) rotate(10deg); } }
+        @keyframes bloom8 { 0% { opacity: 0; transform: translateX(-50%) scale(0.7); } 100% { opacity: 1; transform: translateX(-50%) scale(1); } }
+        @keyframes glowing { 50% { filter: brightness(1.2); box-shadow: 0 0 20px #ff99bb; } }
+        @keyframes gentleSway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(2deg); } }
+        @keyframes swayWholeRose { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(2deg); } 75% { transform: rotate(-2deg); } }
         @keyframes grow { 0% { clip-path: inset(100% 0 0 0); opacity: 0; } 80% { opacity: 1; } 100% { clip-path: inset(0 0 0 0); opacity: 1; } }
 
-        /* --- NUEVAS ANIMACIONES Y DETALLES --- */
-        /* Corazones flotantes alrededor */
+        /* Corazones flotantes */
         .floating-heart {
             position: absolute;
             color: #ff4d6d;
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 15px #ff8aa1);
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            filter: drop-shadow(0 0 10px #ff8aa1);
             z-index: 25;
             pointer-events: none;
             opacity: 0;
-            animation: heartFloat 6s ease-in-out infinite;
+            animation: heartFloat 5s ease-in-out infinite;
             transform-origin: center;
+            will-change: transform, opacity;
         }
 
         @keyframes heartFloat {
             0% { transform: translateY(0) scale(0.8); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(-120px) scale(1.3); opacity: 0; }
+            20% { opacity: 0.9; }
+            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
         }
 
-        /* Alas delicadas alrededor de la rosa */
+        /* Alas */
         .wing {
             position: absolute;
-            width: 100px;
-            height: 70px;
+            width: min(80px, 20vw);
+            height: min(55px, 14vw);
             background: rgba(255, 220, 240, 0.5);
             border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 40px rgba(255, 200, 220, 0.6);
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 30px rgba(255, 200, 220, 0.5);
             z-index: 12;
             pointer-events: none;
             opacity: 0.7;
@@ -300,29 +342,27 @@
         }
 
         .wing-left {
-            left: -60px;
-            top: 100px;
+            left: -30px;
+            top: 90px;
             transform: rotate(-15deg);
         }
         .wing-right {
-            right: -60px;
-            top: 100px;
+            right: -30px;
+            top: 90px;
             transform: rotate(15deg);
+            animation-name: wingFlapRight;
         }
 
         @keyframes wingFlap {
             0%,100% { transform: rotate(-15deg) scale(1); opacity: 0.6; }
             50% { transform: rotate(-5deg) scale(1.1); opacity: 0.9; }
         }
-        .wing-right {
-            animation-name: wingFlapRight;
-        }
         @keyframes wingFlapRight {
             0%,100% { transform: rotate(15deg) scale(1); opacity: 0.6; }
             50% { transform: rotate(5deg) scale(1.1); opacity: 0.9; }
         }
 
-        /* Pétalos que caen (más abundantes) */
+        /* Pétalos que caen */
         #rose-petals-fall-container {
             position: absolute;
             top: 0; left: 0;
@@ -335,87 +375,81 @@
         .falling-rose-petal {
             position: absolute;
             background: #d53b5a;
-            width: 45px; height: 60px;
+            width: min(35px, 8vw);
+            height: min(45px, 11vw);
             border-radius: 20px 50% 20px 50%;
-            opacity: 0.8;
-            box-shadow: 0 0 20px rgba(220, 60, 90, 0.5);
+            opacity: 0.7;
+            box-shadow: 0 0 15px rgba(220, 60, 90, 0.4);
             transform: rotate(45deg);
             z-index: 35;
+            will-change: transform, opacity;
         }
 
-        .falling-rose-petal.fall-left { animation: petalFallLeft 10s linear forwards; }
-        .falling-rose-petal.fall-right { animation: petalFallRight 10s linear forwards; }
+        .falling-rose-petal.fall-left { animation: petalFallLeft 8s linear forwards; }
+        .falling-rose-petal.fall-right { animation: petalFallRight 8s linear forwards; }
 
         @keyframes petalFallLeft {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.9; }
-            70% { transform: translateY(70vh) rotate(200deg) translateX(-12vw); opacity: 0.6; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(-18vw); opacity: 0; }
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }
+            70% { transform: translateY(70vh) rotate(200deg) translateX(-8vw); opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(-12vw); opacity: 0; }
         }
         @keyframes petalFallRight {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.9; }
-            70% { transform: translateY(70vh) rotate(-200deg) translateX(12vw); opacity: 0.6; }
-            100% { transform: translateY(110vh) rotate(-360deg) translateX(18vw); opacity: 0; }
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }
+            70% { transform: translateY(70vh) rotate(-200deg) translateX(8vw); opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(-360deg) translateX(12vw); opacity: 0; }
         }
 
-        /* Pequeñas estrellas titilantes (besos) */
+        /* Estrellas y besos */
         .kiss-star {
             position: absolute;
             color: #ffd966;
-            font-size: 1.5rem;
-            filter: drop-shadow(0 0 8px gold);
+            font-size: clamp(1.3rem, 5vw, 2rem);
+            filter: drop-shadow(0 0 5px gold);
             z-index: 22;
             pointer-events: none;
-            animation: twinkleStar 3s infinite alternate;
+            animation: twinkleStar 2.5s infinite alternate;
+            will-change: opacity, transform;
         }
 
         @keyframes twinkleStar {
-            0% { opacity: 0.2; transform: scale(0.8); }
+            0% { opacity: 0.3; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Frases que aparecen alrededor */
+        /* Mensajes flotantes */
         .floating-message {
             position: absolute;
             font-family: 'Great Vibes', cursive;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
             color: #ac3e5a;
-            background: rgba(255, 250, 250, 0.5);
+            background: rgba(255, 250, 250, 0.6);
             backdrop-filter: blur(2px);
-            padding: 6px 18px;
+            padding: 5px 15px;
             border-radius: 40px;
             white-space: nowrap;
             border: 1px solid white;
             z-index: 40;
             pointer-events: none;
-            box-shadow: 0 4px 15px rgba(255, 160, 180, 0.4);
-            animation: messageDrift 12s linear forwards;
+            box-shadow: 0 3px 10px rgba(255, 160, 180, 0.3);
+            animation: messageDrift 10s linear forwards;
+            will-change: transform, opacity;
         }
 
         @keyframes messageDrift {
-            0% { transform: translateX(100vw) rotate(5deg); opacity: 0; }
+            0% { transform: translateX(100vw) rotate(3deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateX(-50vw) rotate(-5deg); opacity: 0; }
+            100% { transform: translateX(-50vw) rotate(-3deg); opacity: 0; }
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .rose-wrapper { width: 260px; height: 440px; }
-            .petals > div { width: 55px; height: 75px; }
-            .petals > div:nth-child(1) { width: 60px; height: 70px; left: calc(50% - 30px); }
-            .petals > div:nth-child(2), .petals > div:nth-child(4) { left: calc(50% - 48px); }
-            .petals > div:nth-child(3), .petals > div:nth-child(5) { left: calc(50% - 8px); }
-            .petals > div:nth-child(6) { left: calc(50% - 37px); }
-            .petals > div:nth-child(7) { left: calc(50% - 18px); }
-            .calyx { top: 98px; }
-            .stem { height: calc(100% - 115px); }
-            .leaves > div:nth-child(1) { top: 210px; }
-            .leaves > div:nth-child(2) { top: 180px; }
-            .text-main { font-size: 3.5rem; }
-            .text-sub { font-size: 1.3rem; padding: 8px 18px; }
-            .wing { width: 70px; height: 50px; }
-            .wing-left { left: -35px; }
-            .wing-right { right: -35px; }
+        /* Optimizaciones para pantallas pequeñas */
+        @media (max-width: 380px) {
+            .rose-wrapper {
+                width: 240px;
+                height: 380px;
+            }
+            .wing-left { left: -20px; }
+            .wing-right { right: -20px; }
         }
     </style>
 </head>
@@ -428,14 +462,14 @@
 
     <!-- Escena central -->
     <div class="scene-container">
-        <!-- Frase principal dinámica (cambiará con JS) -->
+        <!-- Frase principal -->
         <div class="text-main" id="mainMessage">🌹 Mamá, eres mi flor más preciada 🌹</div>
-        <!-- Subtítulo igualmente especial -->
-        <div class="text-sub" id="subMessage">Gracias por tu amor infinito</div>
+        <!-- Subtítulo -->
+        <div class="text-sub" id="subMessage">Gracias por tu amor infinito ❤️</div>
 
-        <!-- Rosa con alas y corazones (envoltura) -->
+        <!-- Rosa con alas y corazones -->
         <div class="rose-wrapper" id="roseWrapper">
-            <!-- Alas decorativas (2) -->
+            <!-- Alas decorativas -->
             <div class="wing wing-left"></div>
             <div class="wing wing-right"></div>
 
@@ -463,51 +497,51 @@
 
     <script>
         (function() {
-            // 1. Partículas de fondo
+            // Reducir partículas en móvil para mejor rendimiento
             const particlesContainer = document.getElementById('particles-container');
-            const isMobile = window.innerWidth <= 600;
-            const particleCount = isMobile ? 25 : 50;
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const particleCount = isMobile ? 15 : 25; // Menos partículas en móvil
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                const size = isMobile ? Math.random() * 60 + 20 : Math.random() * 170 + 60;
+                const size = isMobile ? Math.random() * 40 + 15 : Math.random() * 60 + 20;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.left = Math.random() * 100 + 'vw';
-                const duration = Math.random() * 12 + 6;
-                const delay = Math.random() * -15;
+                particle.style.left = Math.random() * 100 + '%';
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * -10;
                 particle.style.animation = `move-particles ${duration}s linear ${delay}s infinite`;
                 particlesContainer.appendChild(particle);
             }
 
-            // 2. Mensajes para mamá (frases hermosas)
+            // Mensajes para mamá (versión móvil)
             const mensajesPrincipales = [
-                "🌹 Mamá, eres mi flor más preciada 🌹",
+                "🌹 Mamá, te amo con todo mi corazón 🌹",
                 "💖 Gracias por darme la vida, mamá 💖",
-                "✨ Tu amor es mi mayor tesoro ✨",
-                "🌟 Mamá, contigo aprendí a volar 🌟",
-                "💕 Eres la luz que guía mis pasos 💕",
-                "🌺 Mamá, tu corazón es mi hogar 🌺",
-                "🕊️ Tus alas siempre me protegieron 🕊️",
-                "💗 Eres única, mamá. Te amo 💗"
+                "✨ Eres la mejor madre del mundo ✨",
+                "🌟 Mamá, tú eres mi ángel 🌟",
+                "💕 Tu amor es mi mayor tesoro 💕",
+                "🌺 Mamá, gracias por cuidarme siempre 🌺",
+                "🕊️ Contigo todo es más bonito 🕊️",
+                "💗 Eres única, mamá. Te adoro 💗"
             ];
 
             const mensajesSecundarios = [
-                "Gracias por tu amor infinito",
-                "Eres mi ángel en la tierra",
-                "Cada latido es para ti",
-                "La mejor madre del universo",
-                "Siempre en mi corazón",
-                "Tu sonrisa lo ilumina todo",
-                "Eres pura ternura",
-                "Mi ejemplo a seguir"
+                "Gracias por tu amor infinito ❤️",
+                "Eres mi ángel en la tierra ✨",
+                "Cada latido es para ti 💓",
+                "La mejor mamá del mundo 🌍",
+                "Siempre en mi corazón 💝",
+                "Tu sonrisa lo ilumina todo ☀️",
+                "Eres pura ternura 🌸",
+                "Mi ejemplo a seguir 🌟"
             ];
 
             const mainEl = document.getElementById('mainMessage');
             const subEl = document.getElementById('subMessage');
 
-            // Cambiar mensajes cada 7 segundos
+            // Cambiar mensajes cada 6 segundos
             setInterval(() => {
                 const randomMain = mensajesPrincipales[Math.floor(Math.random() * mensajesPrincipales.length)];
                 const randomSub = mensajesSecundarios[Math.floor(Math.random() * mensajesSecundarios.length)];
@@ -518,10 +552,10 @@
                     subEl.textContent = randomSub;
                     mainEl.style.opacity = '1';
                     subEl.style.opacity = '1';
-                }, 500);
-            }, 7000);
+                }, 400);
+            }, 6000);
 
-            // 3. Pétalos que caen (muchos)
+            // Pétalos que caen (menos frecuencia en móvil)
             const petalContainer = document.getElementById('rose-petals-fall-container');
             const roseEl = document.querySelector('.rose');
             let petalDirection = 0;
@@ -531,90 +565,104 @@
                 const petal = document.createElement('div');
                 petal.classList.add('falling-rose-petal');
                 petalDirection++;
-                if (petalDirection % 3 === 0) petal.classList.add('fall-left');
-                else if (petalDirection % 3 === 1) petal.classList.add('fall-right');
-                else petal.classList.add('fall-left'); // variedad
+                
+                if (petalDirection % 2 === 0) {
+                    petal.classList.add('fall-left');
+                } else {
+                    petal.classList.add('fall-right');
+                }
 
                 const rect = roseEl.getBoundingClientRect();
-                const startX = rect.left + rect.width / 2 + (Math.random() * 40 - 20);
-                const startY = rect.top + 40 + Math.random() * 50;
+                const startX = rect.left + rect.width / 2 + (Math.random() * 30 - 15);
+                const startY = rect.top + 30 + Math.random() * 40;
+                
                 petal.style.left = `${startX}px`;
                 petal.style.top = `${startY}px`;
-                // tamaño y color aleatorio
-                const scale = 0.7 + Math.random() * 0.7;
+                
+                const scale = 0.6 + Math.random() * 0.5;
                 petal.style.transform = `rotate(${Math.random() * 90}deg) scale(${scale})`;
-                petal.style.background = `#${Math.floor(Math.random()*16777215).toString(16).slice(0,6)}`; // tono aleatorio cálido
+                
+                // Colores cálidos aleatorios
+                const colores = ['#d53b5a', '#c41e45', '#b81b43', '#e6426d', '#ff4d6d'];
+                petal.style.background = colores[Math.floor(Math.random() * colores.length)];
+                
                 petalContainer.appendChild(petal);
-
                 petal.addEventListener('animationend', () => petal.remove());
             }
 
-            // Generar pétalos abundantemente
-            setInterval(createFallingPetal, 900);
+            // Generar pétalos cada 1.2 segundos en móvil
+            setInterval(createFallingPetal, 1200);
 
-            // 4. Corazones flotantes alrededor de la rosa
+            // Corazones flotantes
             function createFloatingHeart() {
                 const heart = document.createElement('div');
                 heart.classList.add('floating-heart');
-                heart.innerHTML = '❤️';
+                
+                // Variedad de corazones
+                const corazones = ['❤️', '💗', '💓', '💖', '💝', '💕'];
+                heart.innerHTML = corazones[Math.floor(Math.random() * corazones.length)];
+                
                 const wrapper = document.querySelector('.rose-wrapper');
                 if (!wrapper) return;
+                
                 const rect = wrapper.getBoundingClientRect();
-                heart.style.left = rect.left + rect.width / 2 + (Math.random() * 150 - 75) + 'px';
-                heart.style.bottom = (window.innerHeight - rect.top) + 30 + 'px';
-                heart.style.animationDuration = (4 + Math.random() * 4) + 's';
-                heart.style.fontSize = (1.2 + Math.random() * 2) + 'rem';
+                heart.style.left = rect.left + rect.width / 2 + (Math.random() * 100 - 50) + 'px';
+                heart.style.bottom = (window.innerHeight - rect.top) + 20 + 'px';
+                heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+                
                 document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 6000);
+                setTimeout(() => heart.remove(), 5000);
             }
-            setInterval(createFloatingHeart, 800);
+            setInterval(createFloatingHeart, 1000);
 
-            // 5. Estrellas/Kisses
+            // Estrellas y besos
             function createKissStar() {
                 const star = document.createElement('div');
                 star.classList.add('kiss-star');
+                
+                // Alternar entre estrellas y besos
                 star.innerHTML = Math.random() > 0.5 ? '⭐' : '💋';
-                star.style.left = Math.random() * 100 + '%';
+                
+                star.style.left = Math.random() * 90 + 5 + '%';
                 star.style.top = Math.random() * 80 + 10 + '%';
-                star.style.animationDuration = (1 + Math.random() * 2) + 's';
+                star.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+                
                 document.body.appendChild(star);
-                setTimeout(() => star.remove(), 4000);
+                setTimeout(() => star.remove(), 3000);
             }
-            setInterval(createKissStar, 1200);
+            setInterval(createKissStar, 1500);
 
-            // 6. Mensajes flotantes con frases (aparecen desde la derecha)
+            // Mensajes flotantes
             function createFloatingMessage() {
                 const msg = document.createElement('div');
                 msg.classList.add('floating-message');
+                
                 const frases = [
-                    "Te adoro, mamá",
-                    "Eres mi todo",
-                    "Gracias por cuidarme",
-                    "Tu amor me sostiene",
-                    "La mejor mamá",
-                    "Eres única",
-                    "Te amo con el alma",
+                    "Te quiero mucho mamá",
+                    "Eres especial",
+                    "Gracias por todo",
                     "Mi heroína",
-                    "Ángel mío",
-                    "Corazón de mamá"
+                    "Te amo",
+                    "Eres única",
+                    "Mi ángel",
+                    "La mejor mamá"
                 ];
+                
                 msg.textContent = frases[Math.floor(Math.random() * frases.length)] + ' ❤️';
-                msg.style.top = Math.random() * 80 + 10 + '%';
-                msg.style.animationDuration = (10 + Math.random() * 6) + 's';
+                msg.style.top = Math.random() * 70 + 15 + '%';
+                msg.style.animationDuration = (8 + Math.random() * 4) + 's';
+                
                 document.body.appendChild(msg);
-                setTimeout(() => msg.remove(), 16000);
+                setTimeout(() => msg.remove(), 12000);
             }
-            setInterval(createFloatingMessage, 3500);
+            setInterval(createFloatingMessage, 4000);
 
-            // Inicializar algunos elementos extra al cargar
+            // Crear elementos iniciales
             window.addEventListener('load', () => {
-                for (let i = 0; i < 6; i++) {
-                    setTimeout(createFloatingHeart, i * 300);
-                    setTimeout(createKissStar, i * 400);
+                for (let i = 0; i < 4; i++) {
+                    setTimeout(createFloatingHeart, i * 400);
+                    setTimeout(createKissStar, i * 500);
                 }
-                setTimeout(() => {
-                    setInterval(createFloatingMessage, 4000);
-                }, 2000);
             });
         })();
     </script>
