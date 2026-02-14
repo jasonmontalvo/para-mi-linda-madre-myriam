@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
-    <title>Para mi mamá ❤️</title>
+    <title>Para mi mamá, mi estrella favorita ✨</title>
     
-    <!-- Fuentes elegantes y optimizadas -->
+    <!-- Fuentes elegantes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
         body {
             height: 100vh;
             width: 100vw;
-            background: linear-gradient(145deg, #f9d9e9 0%, #ffe6f0 35%, #fad3e7 70%, #fbc1d9 100%);
+            background: #0a0a1a; /* Color sólido oscuro como fallback */
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -32,7 +32,77 @@
             touch-action: pan-y pinch-zoom;
         }
 
-        /* Partículas de fondo optimizadas para móvil */
+        /* Fondo oscuro con gradiente sutil */
+        #dark-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 40%, #1a1035, #0a0515, #020208);
+            z-index: 0;
+        }
+
+        /* ===== ESTRELLAS DE FONDO ===== */
+        #stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Estrellas fijas que parpadean */
+        .star-fixed {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 4s infinite ease-in-out;
+            will-change: opacity, transform;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Estrellas fugaces - menos frecuentes para mejor rendimiento */
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 50%;
+            filter: blur(0.5px);
+            animation: shoot 2s linear forwards;
+            box-shadow: 0 0 8px 1px #ffffff;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+                width: 3px;
+                height: 3px;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-150px) translateY(150px);
+                opacity: 0;
+                width: 1px;
+                height: 1px;
+            }
+        }
+
+        /* Partículas de fondo - reducidas al mínimo */
         #particles-container {
             position: absolute;
             top: 0; left: 0;
@@ -40,13 +110,14 @@
             z-index: 1;
             overflow: hidden;
             pointer-events: none;
+            opacity: 0.3; /* Más sutiles */
         }
 
         .particle {
             position: absolute;
-            background: rgba(255, 120, 160, 0.2);
+            background: rgba(180, 100, 140, 0.2);
             border-radius: 50%;
-            filter: blur(15px);
+            filter: blur(20px);
             bottom: -200px;
             animation: move-particles linear infinite;
             will-change: transform;
@@ -66,20 +137,20 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            padding-top: 4vh;
+            padding-top: 3vh;
             padding-bottom: 2vh;
             z-index: 10;
             pointer-events: none;
         }
 
-        /* Texto principal */
+        /* Texto principal - más brillante sobre fondo oscuro */
         .text-main {
             position: relative;
-            color: #b3405a;
-            font-size: clamp(2.2rem, 8vw, 4rem);
+            color: #ffeaf2;
+            font-size: clamp(2rem, 7vw, 3.8rem);
             font-family: 'Great Vibes', cursive;
-            text-shadow: 0 0 15px #ff99bb, 0 0 30px #ffb6c1;
-            animation: fadeInText 2s ease-in 1.5s forwards, floatText 5s ease-in-out infinite 3s;
+            text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493, 0 0 30px #ff00aa;
+            animation: fadeInText 2s ease-in 1s forwards, floatText 6s ease-in-out infinite 3s;
             opacity: 0;
             z-index: 20;
             text-align: center;
@@ -88,22 +159,23 @@
             white-space: normal;
             word-break: break-word;
             max-width: 95vw;
+            letter-spacing: 1px;
         }
 
         .text-sub {
             font-family: 'Quicksand', sans-serif;
-            font-size: clamp(1rem, 4vw, 1.6rem);
-            color: #982d4b;
-            background: rgba(255, 240, 245, 0.6);
-            backdrop-filter: blur(4px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            margin: 10px 15px;
+            font-size: clamp(0.9rem, 3.5vw, 1.5rem);
+            color: #ffd9e8;
+            background: rgba(10, 5, 20, 0.6);
+            backdrop-filter: blur(2px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            margin: 8px 15px;
             font-weight: 400;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(255, 182, 193, 0.7);
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
-            animation: fadeInText 2s ease-in 2.5s forwards, glowSub 3s ease-in-out infinite 4s;
+            border: 1px solid rgba(255, 130, 170, 0.4);
+            box-shadow: 0 2px 10px rgba(255, 0, 100, 0.2);
+            animation: fadeInText 2s ease-in 1.8s forwards, glowSub 4s ease-in-out infinite 4s;
             opacity: 0;
             max-width: 90vw;
             white-space: normal;
@@ -114,18 +186,18 @@
         @keyframes fadeInText { to { opacity: 1; } }
         @keyframes floatText {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-5px); }
         }
         @keyframes glowSub {
-            0%, 100% { box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); border-color: #ffb6c1; }
-            50% { box-shadow: 0 10px 25px rgba(255, 20, 147, 0.5); border-color: #ff69b4; }
+            0%, 100% { box-shadow: 0 2px 10px rgba(255, 80, 140, 0.3); border-color: rgba(255, 130, 170, 0.4); }
+            50% { box-shadow: 0 5px 15px rgba(255, 20, 147, 0.5); border-color: #ff69b4; }
         }
 
         /* Contenedor de la rosa */
         .rose-wrapper {
             position: relative;
-            width: min(280px, 70vw);
-            height: min(440px, 70vh);
+            width: min(260px, 65vw);
+            height: min(400px, 65vh);
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -134,36 +206,36 @@
             pointer-events: none;
         }
 
-        /* Rosa principal */
+        /* Rosa principal - simplificada para mejor rendimiento */
         .rose {
             position: relative;
             width: 100%;
             height: 100%;
-            animation: grow 3s cubic-bezier(0.34, 1.3, 0.55, 1) forwards, 
-                       swayWholeRose 10s ease-in-out infinite 4s;
+            animation: grow 2.5s cubic-bezier(0.34, 1.3, 0.55, 1) forwards, 
+                       swayWholeRose 12s ease-in-out infinite 3.5s;
             transform-origin: bottom center;
             clip-path: inset(100% 0 0 0);
-            filter: drop-shadow(0 8px 12px rgba(180, 40, 80, 0.25));
+            filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.5));
         }
 
         .petals {
             position: relative;
             width: 100%;
-            height: 210px;
-            animation: gentleSway 7s ease-in-out infinite 4.2s;
+            height: 190px;
+            animation: gentleSway 8s ease-in-out infinite 4s;
             transform-origin: bottom center;
             z-index: 10;
         }
 
-        /* Pétalos con tamaños adaptables */
+        /* Pétalos - colores más intensos para destacar */
         .petals > div {
             position: absolute;
-            background: radial-gradient(circle at 30% 30%, #ff7a9e, #d52d58);
-            width: min(65px, 15vw);
-            height: min(85px, 20vw);
-            transition: all 0.4s ease-out;
-            box-shadow: 0 3px 10px rgba(200, 50, 80, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: radial-gradient(circle at 30% 30%, #ff3b6f, #b81b43);
+            width: min(60px, 14vw);
+            height: min(75px, 18vw);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 200, 200, 0.2);
+            will-change: transform;
         }
 
         .petals > div:nth-child(1) {
@@ -171,80 +243,67 @@
             left: 50%;
             transform: translateX(-50%);
             top: 25px;
-            background: radial-gradient(circle at 30% 30%, #ff99b4, #c41e45);
+            background: radial-gradient(circle at 30% 30%, #ff4d7a, #c41e45);
             z-index: 8;
-            animation: bloom-center 2.2s ease-out 1.5s forwards, glowing 3s infinite 2s;
-            width: min(65px, 15vw); 
-            height: min(80px, 19vw);
+            animation: bloom-center 2s ease-out 1.2s forwards;
+            width: min(60px, 14vw); 
+            height: min(70px, 16vw);
         }
         .petals > div:nth-child(2), .petals > div:nth-child(4) {
-            background: radial-gradient(circle at 20% 40%, #ff809d, #b81b43);
+            background: radial-gradient(circle at 20% 40%, #e6325c, #a0153a);
             left: 50%;
             transform: translateX(-100%);
-            border-radius: 0 50px 0 40px;
+            border-radius: 0 40px 0 30px;
             transform-origin: bottom right;
         }
         .petals > div:nth-child(3), .petals > div:nth-child(5) {
-            background: radial-gradient(circle at 80% 40%, #ff809d, #b81b43);
+            background: radial-gradient(circle at 80% 40%, #e6325c, #a0153a);
             left: 50%;
-            border-radius: 50px 0 40px 0;
+            border-radius: 40px 0 30px 0;
             transform-origin: bottom left;
         }
-        .petals > div:nth-child(2) { top: 40px; height: min(95px, 22vw); z-index: 7; animation: bloom2 3s ease-in-out 1.8s forwards, glowing 3s infinite 2.3s; }
-        .petals > div:nth-child(3) { top: 40px; height: min(95px, 22vw); z-index: 7; animation: bloom3 3s ease-in-out 1.8s forwards, glowing 3s infinite 2.3s; }
-        .petals > div:nth-child(4) { top: 40px; height: min(100px, 23vw); z-index: 6; animation: bloom4 3s ease-in-out 2.0s forwards, glowing 3s infinite 2.5s; }
-        .petals > div:nth-child(5) { top: 40px; height: min(100px, 23vw); z-index: 6; animation: bloom5 3s ease-in-out 2.0s forwards, glowing 3s infinite 2.5s; }
+        .petals > div:nth-child(2) { top: 35px; height: min(85px, 20vw); z-index: 7; animation: bloom2 2.5s ease-in-out 1.5s forwards; }
+        .petals > div:nth-child(3) { top: 35px; height: min(85px, 20vw); z-index: 7; animation: bloom3 2.5s ease-in-out 1.5s forwards; }
+        .petals > div:nth-child(4) { top: 35px; height: min(90px, 21vw); z-index: 6; animation: bloom4 2.5s ease-in-out 1.7s forwards; }
+        .petals > div:nth-child(5) { top: 35px; height: min(90px, 21vw); z-index: 6; animation: bloom5 2.5s ease-in-out 1.7s forwards; }
         .petals > div:nth-child(6) {
-            top: 30px; height: min(95px, 22vw); z-index: 5; 
-            background: radial-gradient(circle at 20% 40%, #ff6088, #b81b43);
+            top: 30px; height: min(85px, 20vw); z-index: 5; 
+            background: radial-gradient(circle at 20% 40%, #d52d58, #8f1234);
             left: 50%;
             transform: translateX(-70%);
-            border-radius: 0 40px 0 40px; 
+            border-radius: 0 35px 0 35px; 
             transform-origin: bottom right;
-            animation: bloom6 3s ease-in-out 2.2s forwards, glowing 3s infinite 2.7s;
+            animation: bloom6 2.5s ease-in-out 1.9s forwards;
         }
         .petals > div:nth-child(7) {
-            top: 30px; height: min(95px, 22vw); z-index: 5; 
-            background: radial-gradient(circle at 80% 40%, #ff6088, #b81b43);
+            top: 30px; height: min(85px, 20vw); z-index: 5; 
+            background: radial-gradient(circle at 80% 40%, #d52d58, #8f1234);
             left: 50%;
             transform: translateX(-30%);
-            border-radius: 40px 0 40px 0; 
+            border-radius: 35px 0 35px 0; 
             transform-origin: bottom left;
-            animation: bloom7 3s ease-in-out 2.2s forwards, glowing 3s infinite 2.7s;
-        }
-        .petals > div:nth-child(8) {
-            width: min(75px, 17vw); 
-            height: min(70px, 16vw); 
-            background: radial-gradient(circle at 30% 20%, #ffa5bc, #c41e45);
-            top: 55px; 
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 50% 50% 20% 20%; 
-            z-index: 4;
-            animation: bloom8 2.5s ease-out 2.5s forwards, glowing 3s infinite 3s;
-            opacity: 0;
+            animation: bloom7 2.5s ease-in-out 1.9s forwards;
         }
 
         .calyx {
             position: absolute;
-            top: 108px;
+            top: 98px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 20;
         }
         .calyx > div {
             position: absolute; 
-            width: min(24px, 6vw); 
-            height: min(50px, 12vw);
-            background: linear-gradient(to top, #056b05, #32a832);
+            width: min(20px, 5vw); 
+            height: min(40px, 10vw);
+            background: linear-gradient(to top, #0a5a0a, #1e7e1e);
             transform-origin: bottom center;
             clip-path: polygon(50% 0%, 100% 70%, 75% 100%, 25% 100%, 0% 70%);
-            box-shadow: 0 0 5px rgba(0,80,0,0.4);
         }
-        .calyx > div:nth-child(1) { transform: rotate(-65deg); left: -20px; top: -5px; }
-        .calyx > div:nth-child(2) { transform: rotate(-22deg); left: -10px; }
+        .calyx > div:nth-child(1) { transform: rotate(-60deg); left: -15px; top: -3px; }
+        .calyx > div:nth-child(2) { transform: rotate(-20deg); left: -8px; }
         .calyx > div:nth-child(3) { transform: rotate(20deg); left: 2px; }
-        .calyx > div:nth-child(4) { transform: rotate(60deg); left: 12px; top: -5px; }
+        .calyx > div:nth-child(4) { transform: rotate(55deg); left: 10px; top: -3px; }
 
         .stem-bundle {
             position: absolute;
@@ -254,115 +313,108 @@
         }
         .stem {
             position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: min(10px, 2.5vw); 
-            height: calc(100% - 120px); 
-            background: #056b05;
-            border-radius: 0 0 40px 40px; 
-            box-shadow: inset -2px -2px 5px #054c05;
+            width: min(8px, 2vw); 
+            height: calc(100% - 110px); 
+            background: #0a5a0a;
+            border-radius: 0 0 30px 30px; 
         }
         .leaves > div:nth-child(1) {
             position: absolute; 
-            width: min(40px, 10vw); 
-            height: min(70px, 16vw); 
-            border-radius: 5px 45px 20px 45px;
-            background: #0a7a0a; 
+            width: min(35px, 9vw); 
+            height: min(60px, 14vw); 
+            border-radius: 5px 35px 20px 35px;
+            background: #0f6f0f; 
             transform: rotate(-35deg); 
-            top: 240px; 
+            top: 220px; 
             left: 48%;
-            box-shadow: inset 5px 5px #1b8a1b;
         }
         .leaves > div:nth-child(2) {
             position: absolute; 
-            width: min(40px, 10vw); 
-            height: min(70px, 16vw); 
-            border-radius: 45px 0 45px 20px;
-            background: #0a7a0a; 
+            width: min(35px, 9vw); 
+            height: min(60px, 14vw); 
+            border-radius: 35px 0 35px 20px;
+            background: #0f6f0f; 
             transform: rotate(35deg); 
-            top: 200px; 
+            top: 185px; 
             left: 48%;
-            box-shadow: inset -5px 5px #1b8a1b;
         }
         .thorns > div {
             position: absolute; width: 0; height: 0;
         }
-        .thorns > div:nth-child(odd) { border: 5px solid transparent; border-left: 5px solid #0a7a0a; left: calc(50% + 5px); }
-        .thorns > div:nth-child(even) { border: 5px solid transparent; border-right: 5px solid #0a7a0a; left: calc(50% - 15px); }
-        .thorns > div:nth-child(1) { top: 270px; }
-        .thorns > div:nth-child(2) { top: 230px; }
-        .thorns > div:nth-child(3) { top: 190px; }
+        .thorns > div:nth-child(odd) { border: 4px solid transparent; border-left: 4px solid #0f6f0f; left: calc(50% + 4px); }
+        .thorns > div:nth-child(even) { border: 4px solid transparent; border-right: 4px solid #0f6f0f; left: calc(50% - 12px); }
+        .thorns > div:nth-child(1) { top: 250px; }
+        .thorns > div:nth-child(2) { top: 215px; }
+        .thorns > div:nth-child(3) { top: 180px; }
 
-        /* Animaciones */
-        @keyframes bloom-center { 0% { transform: translateX(-50%) scale(0.4); } 100% { transform: translateX(-50%) scale(1); } }
-        @keyframes bloom2 { 100% { transform: translateX(-100%) rotate(-25deg); } }
-        @keyframes bloom3 { 100% { transform: translateX(0) rotate(25deg); } }
-        @keyframes bloom4 { 100% { transform: translateX(-100%) rotate(-15deg); } }
-        @keyframes bloom5 { 100% { transform: translateX(0) rotate(15deg); } }
-        @keyframes bloom6 { 100% { transform: translateX(-70%) rotate(-10deg); } }
-        @keyframes bloom7 { 100% { transform: translateX(-30%) rotate(10deg); } }
-        @keyframes bloom8 { 0% { opacity: 0; transform: translateX(-50%) scale(0.7); } 100% { opacity: 1; transform: translateX(-50%) scale(1); } }
-        @keyframes glowing { 50% { filter: brightness(1.2); box-shadow: 0 0 20px #ff99bb; } }
-        @keyframes gentleSway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(2deg); } }
-        @keyframes swayWholeRose { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(2deg); } 75% { transform: rotate(-2deg); } }
-        @keyframes grow { 0% { clip-path: inset(100% 0 0 0); opacity: 0; } 80% { opacity: 1; } 100% { clip-path: inset(0 0 0 0); opacity: 1; } }
+        /* Animaciones simplificadas */
+        @keyframes bloom-center { 0% { transform: translateX(-50%) scale(0.3); } 100% { transform: translateX(-50%) scale(1); } }
+        @keyframes bloom2 { 100% { transform: translateX(-100%) rotate(-20deg); } }
+        @keyframes bloom3 { 100% { transform: translateX(0) rotate(20deg); } }
+        @keyframes bloom4 { 100% { transform: translateX(-100%) rotate(-12deg); } }
+        @keyframes bloom5 { 100% { transform: translateX(0) rotate(12deg); } }
+        @keyframes bloom6 { 100% { transform: translateX(-70%) rotate(-8deg); } }
+        @keyframes bloom7 { 100% { transform: translateX(-30%) rotate(8deg); } }
+        @keyframes gentleSway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(1.5deg); } }
+        @keyframes swayWholeRose { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(1.5deg); } 75% { transform: rotate(-1.5deg); } }
+        @keyframes grow { 0% { clip-path: inset(100% 0 0 0); opacity: 0; } 100% { clip-path: inset(0 0 0 0); opacity: 1; } }
 
-        /* Corazones flotantes */
+        /* Corazones flotantes - más simples */
         .floating-heart {
             position: absolute;
             color: #ff4d6d;
-            font-size: clamp(1.5rem, 6vw, 2.2rem);
-            filter: drop-shadow(0 0 10px #ff8aa1);
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            filter: drop-shadow(0 0 5px #ff1493);
             z-index: 25;
             pointer-events: none;
             opacity: 0;
-            animation: heartFloat 5s ease-in-out infinite;
-            transform-origin: center;
+            animation: heartFloat 4s ease-out forwards;
             will-change: transform, opacity;
         }
 
         @keyframes heartFloat {
-            0% { transform: translateY(0) scale(0.8); opacity: 0; }
-            20% { opacity: 0.9; }
-            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-80px) scale(1); opacity: 0; }
         }
 
-        /* Alas */
+        /* Alas - más sutiles */
         .wing {
             position: absolute;
-            width: min(80px, 20vw);
-            height: min(55px, 14vw);
-            background: rgba(255, 220, 240, 0.5);
+            width: min(70px, 17vw);
+            height: min(45px, 11vw);
+            background: rgba(200, 150, 180, 0.2);
             border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%;
-            backdrop-filter: blur(3px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 30px rgba(255, 200, 220, 0.5);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 200, 220, 0.2);
             z-index: 12;
             pointer-events: none;
-            opacity: 0.7;
-            animation: wingFlap 5s ease-in-out infinite;
+            opacity: 0.5;
+            animation: wingFlap 6s ease-in-out infinite;
         }
 
         .wing-left {
-            left: -30px;
-            top: 90px;
-            transform: rotate(-15deg);
+            left: -20px;
+            top: 80px;
+            transform: rotate(-12deg);
         }
         .wing-right {
-            right: -30px;
-            top: 90px;
-            transform: rotate(15deg);
+            right: -20px;
+            top: 80px;
+            transform: rotate(12deg);
             animation-name: wingFlapRight;
         }
 
         @keyframes wingFlap {
-            0%,100% { transform: rotate(-15deg) scale(1); opacity: 0.6; }
-            50% { transform: rotate(-5deg) scale(1.1); opacity: 0.9; }
+            0%,100% { transform: rotate(-12deg) scale(1); opacity: 0.4; }
+            50% { transform: rotate(-3deg) scale(1.05); opacity: 0.6; }
         }
         @keyframes wingFlapRight {
-            0%,100% { transform: rotate(15deg) scale(1); opacity: 0.6; }
-            50% { transform: rotate(5deg) scale(1.1); opacity: 0.9; }
+            0%,100% { transform: rotate(12deg) scale(1); opacity: 0.4; }
+            50% { transform: rotate(3deg) scale(1.05); opacity: 0.6; }
         }
 
-        /* Pétalos que caen */
+        /* Pétalos que caen - reducidos */
         #rose-petals-fall-container {
             position: absolute;
             top: 0; left: 0;
@@ -374,87 +426,56 @@
 
         .falling-rose-petal {
             position: absolute;
-            background: #d53b5a;
-            width: min(35px, 8vw);
-            height: min(45px, 11vw);
-            border-radius: 20px 50% 20px 50%;
-            opacity: 0.7;
-            box-shadow: 0 0 15px rgba(220, 60, 90, 0.4);
+            background: #b81b43;
+            width: min(30px, 7vw);
+            height: min(38px, 9vw);
+            border-radius: 20px 40% 20px 40%;
+            opacity: 0.6;
             transform: rotate(45deg);
             z-index: 35;
             will-change: transform, opacity;
+            animation: petalFall 6s linear forwards;
         }
 
-        .falling-rose-petal.fall-left { animation: petalFallLeft 8s linear forwards; }
-        .falling-rose-petal.fall-right { animation: petalFallRight 8s linear forwards; }
-
-        @keyframes petalFallLeft {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }
-            70% { transform: translateY(70vh) rotate(200deg) translateX(-8vw); opacity: 0.5; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(-12vw); opacity: 0; }
-        }
-        @keyframes petalFallRight {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }
-            70% { transform: translateY(70vh) rotate(-200deg) translateX(8vw); opacity: 0.5; }
-            100% { transform: translateY(110vh) rotate(-360deg) translateX(12vw); opacity: 0; }
+        @keyframes petalFall {
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.7; }
+            70% { transform: translateY(65vh) rotate(180deg) translateX(calc(var(--direction, -1) * 8vw)); opacity: 0.4; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(calc(var(--direction, -1) * 12vw)); opacity: 0; }
         }
 
-        /* Estrellas y besos */
-        .kiss-star {
-            position: absolute;
-            color: #ffd966;
-            font-size: clamp(1.3rem, 5vw, 2rem);
-            filter: drop-shadow(0 0 5px gold);
-            z-index: 22;
-            pointer-events: none;
-            animation: twinkleStar 2.5s infinite alternate;
-            will-change: opacity, transform;
-        }
-
-        @keyframes twinkleStar {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Mensajes flotantes */
+        /* Mensajes flotantes - menos frecuentes */
         .floating-message {
             position: absolute;
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            color: #ac3e5a;
-            background: rgba(255, 250, 250, 0.6);
-            backdrop-filter: blur(2px);
-            padding: 5px 15px;
-            border-radius: 40px;
+            font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+            color: #ffd0e0;
+            background: rgba(10, 5, 20, 0.5);
+            backdrop-filter: blur(1px);
+            padding: 4px 12px;
+            border-radius: 30px;
             white-space: nowrap;
-            border: 1px solid white;
+            border: 1px solid rgba(255, 100, 150, 0.3);
             z-index: 40;
             pointer-events: none;
-            box-shadow: 0 3px 10px rgba(255, 160, 180, 0.3);
-            animation: messageDrift 10s linear forwards;
-            will-change: transform, opacity;
+            animation: messageDrift 8s linear forwards;
         }
 
         @keyframes messageDrift {
-            0% { transform: translateX(100vw) rotate(3deg); opacity: 0; }
+            0% { transform: translateX(100vw) rotate(2deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateX(-50vw) rotate(-3deg); opacity: 0; }
-        }
-
-        /* Optimizaciones para pantallas pequeñas */
-        @media (max-width: 380px) {
-            .rose-wrapper {
-                width: 240px;
-                height: 380px;
-            }
-            .wing-left { left: -20px; }
-            .wing-right { right: -20px; }
+            100% { transform: translateX(-50vw) rotate(-2deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Fondo con partículas -->
+    <!-- Fondo oscuro sólido -->
+    <div id="dark-bg"></div>
+    
+    <!-- ESTRELLAS DE FONDO -->
+    <div id="stars-container"></div>
+    
+    <!-- Partículas de fondo muy sutiles -->
     <div id="particles-container"></div>
 
     <!-- Contenedor para pétalos que caen -->
@@ -463,11 +484,11 @@
     <!-- Escena central -->
     <div class="scene-container">
         <!-- Frase principal -->
-        <div class="text-main" id="mainMessage">🌹 Mamá, eres mi flor más preciada 🌹</div>
+        <div class="text-main" id="mainMessage">✨ Mamá, eres mi estrella favorita ✨</div>
         <!-- Subtítulo -->
-        <div class="text-sub" id="subMessage">Gracias por tu amor infinito ❤️</div>
+        <div class="text-sub" id="subMessage">Gracias por iluminar mi vida ❤️</div>
 
-        <!-- Rosa con alas y corazones -->
+        <!-- Rosa con alas -->
         <div class="rose-wrapper" id="roseWrapper">
             <!-- Alas decorativas -->
             <div class="wing wing-left"></div>
@@ -477,7 +498,6 @@
             <div class="rose">
                 <div class="petals">
                     <div></div> <div></div> <div></div> <div></div> <div></div> <div></div> <div></div>
-                    <div></div> <!-- pétalo extra -->
                 </div>
                 <div class="calyx">
                     <div></div> <div></div> <div></div> <div></div>
@@ -497,171 +517,207 @@
 
     <script>
         (function() {
-            // Reducir partículas en móvil para mejor rendimiento
-            const particlesContainer = document.getElementById('particles-container');
+            // DETECTAR MÓVIL PARA AJUSTAR RENDIMIENTO
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const particleCount = isMobile ? 15 : 25; // Menos partículas en móvil
+            
+            // ===== ESTRELLAS DE FONDO =====
+            const starsContainer = document.getElementById('stars-container');
+            
+            // Menos estrellas en móvil para mejor rendimiento
+            const starCount = isMobile ? 80 : 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-fixed';
+                
+                const size = Math.random() * 2.5 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Velocidad de parpadeo aleatoria pero más larga para menos parpadeo
+                const duration = Math.random() * 4 + 3;
+                star.style.animation = `twinkle ${duration}s infinite ease-in-out`;
+                star.style.animationDelay = Math.random() * 4 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Estrellas fugaces - más espaciadas para menos lag
+            function createShootingStar() {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                
+                star.style.left = Math.random() * 80 + 10 + '%';
+                star.style.top = Math.random() * 30 + '%';
+                
+                const duration = Math.random() * 1.5 + 1.5;
+                star.style.animation = `shoot ${duration}s linear forwards`;
+                
+                starsContainer.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, duration * 1000);
+            }
+            
+            // Estrellas fugaces cada 4 segundos en móvil, 3 en desktop
+            setInterval(createShootingStar, isMobile ? 5000 : 3500);
+
+            // ===== PARTÍCULAS DE FONDO MÍNIMAS =====
+            const particlesContainer = document.getElementById('particles-container');
+            const particleCount = isMobile ? 5 : 10;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                const size = isMobile ? Math.random() * 40 + 15 : Math.random() * 60 + 20;
+                const size = isMobile ? Math.random() * 30 + 15 : Math.random() * 40 + 20;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = Math.random() * 100 + '%';
-                const duration = Math.random() * 10 + 5;
+                const duration = Math.random() * 15 + 10;
                 const delay = Math.random() * -10;
                 particle.style.animation = `move-particles ${duration}s linear ${delay}s infinite`;
                 particlesContainer.appendChild(particle);
             }
 
-            // Mensajes para mamá (versión móvil)
+            // ===== MENSAJES PARA MAMÁ =====
             const mensajesPrincipales = [
-                "🌹 Mamá, te amo con todo mi corazón 🌹",
-                "💖 Gracias por darme la vida, mamá 💖",
-                "✨ Eres la mejor madre del mundo ✨",
-                "🌟 Mamá, tú eres mi ángel 🌟",
-                "💕 Tu amor es mi mayor tesoro 💕",
-                "🌺 Mamá, gracias por cuidarme siempre 🌺",
-                "🕊️ Contigo todo es más bonito 🕊️",
-                "💗 Eres única, mamá. Te adoro 💗"
+                "✨ Mamá, eres mi estrella favorita ✨",
+                "🌹 Mamá, te amo infinito 🌹",
+                "💖 Gracias por todo, mamá 💖",
+                "🌟 Eres la mejor del mundo 🌟",
+                "⭐ Mamá, mi ángel guardián ⭐",
+                "💕 Tu amor es mi tesoro 💕",
+                "🌺 Mamá, gracias por cuidarme 🌺",
+                "💗 Eres única, te adoro 💗"
             ];
 
             const mensajesSecundarios = [
-                "Gracias por tu amor infinito ❤️",
-                "Eres mi ángel en la tierra ✨",
-                "Cada latido es para ti 💓",
-                "La mejor mamá del mundo 🌍",
-                "Siempre en mi corazón 💝",
+                "Gracias por tu amor ❤️",
+                "Eres mi ángel ✨",
+                "Siempre en mi corazón 💓",
+                "La mejor mamá 🌟",
+                "Te amo con todo mi ser 💝",
                 "Tu sonrisa lo ilumina todo ☀️",
-                "Eres pura ternura 🌸",
-                "Mi ejemplo a seguir 🌟"
+                "Eres mi luz ⭐",
+                "Mi ejemplo a seguir 🌸"
             ];
 
             const mainEl = document.getElementById('mainMessage');
             const subEl = document.getElementById('subMessage');
 
-            // Cambiar mensajes cada 6 segundos
+            // Cambiar mensajes cada 8 segundos
             setInterval(() => {
                 const randomMain = mensajesPrincipales[Math.floor(Math.random() * mensajesPrincipales.length)];
                 const randomSub = mensajesSecundarios[Math.floor(Math.random() * mensajesSecundarios.length)];
+                
+                mainEl.style.transition = 'opacity 0.5s';
+                subEl.style.transition = 'opacity 0.5s';
                 mainEl.style.opacity = '0';
                 subEl.style.opacity = '0';
+                
                 setTimeout(() => {
                     mainEl.textContent = randomMain;
                     subEl.textContent = randomSub;
                     mainEl.style.opacity = '1';
                     subEl.style.opacity = '1';
-                }, 400);
-            }, 6000);
+                }, 500);
+            }, 8000);
 
-            // Pétalos que caen (menos frecuencia en móvil)
+            // ===== PÉTALOS QUE CAEN =====
             const petalContainer = document.getElementById('rose-petals-fall-container');
             const roseEl = document.querySelector('.rose');
-            let petalDirection = 0;
 
             function createFallingPetal() {
                 if (!roseEl) return;
+                
                 const petal = document.createElement('div');
                 petal.classList.add('falling-rose-petal');
-                petalDirection++;
                 
-                if (petalDirection % 2 === 0) {
-                    petal.classList.add('fall-left');
-                } else {
-                    petal.classList.add('fall-right');
-                }
-
                 const rect = roseEl.getBoundingClientRect();
-                const startX = rect.left + rect.width / 2 + (Math.random() * 30 - 15);
-                const startY = rect.top + 30 + Math.random() * 40;
+                const startX = rect.left + rect.width / 2 + (Math.random() * 20 - 10);
+                const startY = rect.top + 20 + Math.random() * 30;
                 
                 petal.style.left = `${startX}px`;
                 petal.style.top = `${startY}px`;
                 
-                const scale = 0.6 + Math.random() * 0.5;
-                petal.style.transform = `rotate(${Math.random() * 90}deg) scale(${scale})`;
+                // Dirección aleatoria usando variable CSS
+                const direction = Math.random() > 0.5 ? '-1' : '1';
+                petal.style.setProperty('--direction', direction);
                 
-                // Colores cálidos aleatorios
-                const colores = ['#d53b5a', '#c41e45', '#b81b43', '#e6426d', '#ff4d6d'];
+                // Color aleatorio
+                const colores = ['#d53b5a', '#c41e45', '#b81b43', '#ff4d6d'];
                 petal.style.background = colores[Math.floor(Math.random() * colores.length)];
                 
                 petalContainer.appendChild(petal);
-                petal.addEventListener('animationend', () => petal.remove());
+                
+                setTimeout(() => {
+                    petal.remove();
+                }, 6000);
             }
 
-            // Generar pétalos cada 1.2 segundos en móvil
-            setInterval(createFallingPetal, 1200);
+            // Pétalos cada 1.5 segundos en móvil, 1.2 en desktop
+            setInterval(createFallingPetal, isMobile ? 1800 : 1500);
 
-            // Corazones flotantes
+            // ===== CORAZONES FLOTANTES =====
             function createFloatingHeart() {
                 const heart = document.createElement('div');
                 heart.classList.add('floating-heart');
                 
-                // Variedad de corazones
-                const corazones = ['❤️', '💗', '💓', '💖', '💝', '💕'];
+                const corazones = ['❤️', '💗', '💖'];
                 heart.innerHTML = corazones[Math.floor(Math.random() * corazones.length)];
                 
                 const wrapper = document.querySelector('.rose-wrapper');
                 if (!wrapper) return;
                 
                 const rect = wrapper.getBoundingClientRect();
-                heart.style.left = rect.left + rect.width / 2 + (Math.random() * 100 - 50) + 'px';
-                heart.style.bottom = (window.innerHeight - rect.top) + 20 + 'px';
-                heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+                heart.style.left = rect.left + rect.width / 2 + (Math.random() * 60 - 30) + 'px';
+                heart.style.bottom = (window.innerHeight - rect.top) + 10 + 'px';
+                heart.style.animationDuration = (3 + Math.random() * 2) + 's';
                 
                 document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
+                setTimeout(() => heart.remove(), 4500);
             }
-            setInterval(createFloatingHeart, 1000);
+            
+            // Corazones cada 1.2 segundos en móvil, 1 en desktop
+            setInterval(createFloatingHeart, isMobile ? 1500 : 1200);
 
-            // Estrellas y besos
-            function createKissStar() {
-                const star = document.createElement('div');
-                star.classList.add('kiss-star');
-                
-                // Alternar entre estrellas y besos
-                star.innerHTML = Math.random() > 0.5 ? '⭐' : '💋';
-                
-                star.style.left = Math.random() * 90 + 5 + '%';
-                star.style.top = Math.random() * 80 + 10 + '%';
-                star.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
-                
-                document.body.appendChild(star);
-                setTimeout(() => star.remove(), 3000);
-            }
-            setInterval(createKissStar, 1500);
-
-            // Mensajes flotantes
+            // ===== MENSAJES FLOTANTES =====
             function createFloatingMessage() {
+                // Solo crear mensajes flotantes ocasionalmente en móvil
+                if (isMobile && Math.random() > 0.3) return;
+                
                 const msg = document.createElement('div');
                 msg.classList.add('floating-message');
                 
                 const frases = [
-                    "Te quiero mucho mamá",
-                    "Eres especial",
-                    "Gracias por todo",
+                    "Te quiero mamá",
+                    "Eres mi estrella",
+                    "Gracias",
                     "Mi heroína",
                     "Te amo",
                     "Eres única",
-                    "Mi ángel",
-                    "La mejor mamá"
+                    "Mi ángel"
                 ];
                 
-                msg.textContent = frases[Math.floor(Math.random() * frases.length)] + ' ❤️';
-                msg.style.top = Math.random() * 70 + 15 + '%';
-                msg.style.animationDuration = (8 + Math.random() * 4) + 's';
+                msg.textContent = frases[Math.floor(Math.random() * frases.length)] + ' ⭐';
+                msg.style.top = Math.random() * 60 + 20 + '%';
                 
                 document.body.appendChild(msg);
-                setTimeout(() => msg.remove(), 12000);
+                setTimeout(() => msg.remove(), 8000);
             }
-            setInterval(createFloatingMessage, 4000);
+            
+            // Menos mensajes flotantes
+            setInterval(createFloatingMessage, isMobile ? 6000 : 4000);
 
-            // Crear elementos iniciales
+            // Crear algunos elementos al inicio
             window.addEventListener('load', () => {
-                for (let i = 0; i < 4; i++) {
-                    setTimeout(createFloatingHeart, i * 400);
-                    setTimeout(createKissStar, i * 500);
+                // Crear algunas estrellas fugaces iniciales
+                for (let i = 0; i < 2; i++) {
+                    setTimeout(createShootingStar, i * 1000);
                 }
             });
         })();
